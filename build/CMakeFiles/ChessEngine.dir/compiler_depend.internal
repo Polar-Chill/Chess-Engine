@@ -195,6 +195,7 @@ CMakeFiles/ChessEngine.dir/src/ChessBoard.cpp.o
 CMakeFiles/ChessEngine.dir/src/main.cpp.o
  /home/manvendra/projects/chess_engine/src/main.cpp
  /home/manvendra/projects/chess_engine/src/ChessBoard.h
+ /home/manvendra/projects/chess_engine/src/PieceMovement.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h

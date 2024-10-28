@@ -193,6 +193,7 @@ CMakeFiles/ChessEngine.dir/src/ChessBoard.cpp.o: /home/manvendra/projects/chess_
 
 CMakeFiles/ChessEngine.dir/src/main.cpp.o: /home/manvendra/projects/chess_engine/src/main.cpp \
   /home/manvendra/projects/chess_engine/src/ChessBoard.h \
+  /home/manvendra/projects/chess_engine/src/PieceMovement.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -601,6 +602,8 @@ CMakeFiles/ChessEngine.dir/src/main.cpp.o: /home/manvendra/projects/chess_engine
 /usr/include/bits/byteswap.h:
 
 /home/manvendra/projects/chess_engine/src/ChessBoard.cpp:
+
+/home/manvendra/projects/chess_engine/src/PieceMovement.h:
 
 /usr/include/bits/thread-shared-types.h:
 

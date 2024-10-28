@@ -1,24 +1,23 @@
 #include <iostream>
 #include "ChessBoard.h"
 
-ChessBoard::ChessBoard() {
-    // Initialize the starting positions for white pieces
-    whitePawns = 0x000000000000FF00; // 0b00000000000000000000000000000000000000000000000000000000000011111111
-    whiteKnights = 0x0000000000000042; // 0b00000000000000000000000000000000000000000000000000000000001010010
-    whiteBishops = 0x0000000000000024; // 0b00000000000000000000000000000000000000000000000000000000000100100
-    whiteRooks = 0x0000000000000081; // 0b00000000000000000000000000000000000000000000000000000000010000001
-    whiteQueen = 0x0000000000000008; // 0b0000000000000000000000000000000000000000000000000000000000001000
-    whiteKing = 0x0000000000000010; // 0b0000000000000000000000000000000000000000000000000000000000010000
+// Use the initializer list to properly initialize the Bitboard structs
+ChessBoard::ChessBoard()
+     :  whitePawns   {0x000000000000FF00, "WP", 'P', true},
+        whiteKnights {0x0000000000000042, "WN", 'N', true},
+        whiteBishops {0x0000000000000024, "WB", 'B', true},
+        whiteRooks   {0x0000000000000081, "WR", 'R', true},
+        whiteQueen   {0x0000000000000008, "WQ", 'Q', true},
+        whiteKing    {0x0000000000000010, "WK", 'K', true},
 
-    // Initialize the starting positions for black pieces
-    blackPawns = 0x00FF000000000000; // 0b1111111100000000000000000000000000000000000000000000000000000000
-    blackKnights = 0x4200000000000000; // 0b0100001000000000000000000000000000000000000000000000000000000000
-    blackBishops = 0x2400000000000000; // 0b0010010000000000000000000000000000000000000000000000000000000000
-    blackRooks = 0x8100000000000000; // 0b1000000100000000000000000000000000000000000000000000000000000000
-    blackQueen = 0x0800000000000000; // 0b0000100000000000000000000000000000000000000000000000000000000000
-    blackKing = 0x1000000000000000; // 0b0001000000000000000000000000000000000000000000000000000000000000
-
-    // Initialize the arrays with pointers to bitboards
+        blackPawns   {0x00FF000000000000, "BP", 'P', false},
+        blackKnights {0x4200000000000000, "BN", 'N', false},
+        blackBishops {0x2400000000000000, "BB", 'B', false},
+        blackRooks   {0x8100000000000000, "BR", 'R', false},
+        blackQueen   {0x0800000000000000, "BQ", 'Q', false},
+        blackKing    {0x1000000000000000, "BK", 'K', false}
+{
+// Populate the arrays with pointers to the individual pieces
     whitePieces[0] = &whitePawns;
     whitePieces[1] = &whiteKnights;
     whitePieces[2] = &whiteBishops;
@@ -38,19 +37,19 @@ ChessBoard::ChessBoard() {
 unsigned long long ChessBoard::combineBitBoards() {
     unsigned long long board = 0Ull;
 
-    board |= whiteKnights;
-    board |= whitePawns;
-    board |= whiteBishops;
-    board |= whiteRooks;
-    board |= whiteQueen;
-    board |= whiteKing;
+    board |= whitePawns.bitboard;
+    board |= whiteKnights.bitboard;
+    board |= whiteBishops.bitboard;
+    board |= whiteRooks.bitboard;
+    board |= whiteQueen.bitboard;
+    board |= whiteKing.bitboard;
     
-    board |= blackPawns;
-    board |= blackKnights;
-    board |= blackBishops;
-    board |= blackRooks;
-    board |= blackQueen;
-    board |= blackKing;
+    board |= blackPawns.bitboard;
+    board |= blackKnights.bitboard;
+    board |= blackBishops.bitboard;
+    board |= blackRooks.bitboard;
+    board |= blackQueen.bitboard;
+    board |= blackKing.bitboard;
 
     return board;
 }
@@ -64,56 +63,45 @@ void ChessBoard::renderBoard() {
         for (int file = 0; file < 8; file++) {
             int index = rank * 8 + file;
             unsigned long long bit = 1ULL << index;
-            
-            // Check for white pieces
-            if ((whitePawns & bit) != 0) std::cout << "WP "; 
-            else if ((whiteKnights & bit) != 0) std::cout << "WN "; 
-            else if ((whiteBishops & bit) != 0) std::cout << "WB "; 
-            else if ((whiteRooks & bit) != 0) std::cout << "WR "; 
-            else if ((whiteQueen & bit) != 0) std::cout << "WQ "; 
-            else if ((whiteKing & bit) != 0) std::cout << "WK "; 
 
-            // Check for black pieces 
-            else if ((blackPawns & bit) != 0) std::cout << "BP ";
-            else if ((blackKnights & bit) != 0) std::cout << "BN "; 
-            else if ((blackBishops & bit) != 0) std::cout << "BB "; 
-            else if ((blackRooks & bit) != 0) std::cout << "BR "; 
-            else if ((blackQueen & bit) != 0) std::cout << "BQ "; 
-            else if ((blackKing & bit) != 0) std::cout << "BK "; 
-            else std::cout << "00 "; // Empty square
+            // Check for white pieces
+            // for(int i = 0; i < 6; i++) {
+            //     if((whitePieces[i]->bitboard & bit) != 0) { 
+            //         std::cout << whitePieces[i]->symbol << " ";
+            //         break;
+            //     }
+            //     else std::cout << "00 "; // Empty square
+            //     break;
+            // }
+            //
+            // Check for black pieces
+            // for(int i = 0; i < 6; i++) {
+            //     if((blackPieces[i]->bitboard & bit) != 0) {
+            //         std::cout << blackPieces[i]->symbol << " ";
+            //         break;
+            //     }
+            //     else std::cout << "00 "; // Empty square
+            //     break;
+            // }
+
+            // Check for white pieces
+            if ((whitePawns.bitboard & bit) != 0) std::cout << "WP "; 
+            else if ((whiteKnights.bitboard & bit) != 0) std::cout << "WN "; 
+            else if ((whiteBishops.bitboard & bit) != 0) std::cout << "WB "; 
+            else if ((whiteRooks.bitboard & bit) != 0) std::cout << "WR "; 
+            else if ((whiteQueen.bitboard & bit) != 0) std::cout << "WQ "; 
+            else if ((whiteKing.bitboard & bit) != 0) std::cout << "WK "; 
+
+            // Check for black pieces
+            else if ((blackPawns.bitboard & bit) != 0) std::cout << "BP ";
+            else if ((blackKnights.bitboard & bit) != 0) std::cout << "BN "; 
+            else if ((blackBishops.bitboard & bit) != 0) std::cout << "BB "; 
+            else if ((blackRooks.bitboard & bit) != 0) std::cout << "BR "; 
+            else if ((blackQueen.bitboard & bit) != 0) std::cout << "BQ "; 
+            else if ((blackKing.bitboard & bit) != 0) std::cout << "BK "; 
+            else std::cout << "00 "; // Empty toSquare
         }
         std::cout << std::endl;
     }
 }
 
-// Moves the piece from the provided parameters "fromFile & fromRank" to "toFile & and toRank" 
-bool ChessBoard::movePiece(const std::string& fromSquare, const std::string& toSquare) {
-    int fF = fromSquare[0] - 'a';
-    int fR = fromSquare[1] - '1';
-    int tF = toSquare[0] - 'a';
-    int tR = toSquare[1] - '1';
-
-    int initialPosition = fR * 8 + fF;
-    int newPosition = tR * 8 + tF;
-
-    unsigned long long iPiecePosition = 1ULL << initialPosition;
-    unsigned long long nPiecePosition = 1ULL << newPosition;
-    
-    // Check for white pieces
-    for (int i = 0; i < 6; i++) {
-        if ((*whitePieces[i] & iPiecePosition) != 0) {
-            *whitePieces[i] = (*whitePieces[i] ^ iPiecePosition) | nPiecePosition;
-            return true;
-        }
-    }
-
-    // Check for black pieces 
-    for (int i = 0; i < 6; i++) {
-        if ((*blackPieces[i] & iPiecePosition) != 0) {
-            *blackPieces[i] = (*blackPieces[i] ^ iPiecePosition) | nPiecePosition;
-            return true; 
-        }
-    }
-
-    return false;
-}

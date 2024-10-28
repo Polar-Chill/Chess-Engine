@@ -2,7 +2,9 @@
 #include <cstdio>
 #include <ostream>
 #include <string>
+
 #include "ChessBoard.h"
+#include "PieceMovement.h"
 
 int main() {
     std::cout << "Engine started successfully..." << std::endl << std::endl << std::endl;
@@ -10,13 +12,17 @@ int main() {
 
     // Initialyze the main ChessBoard class here 
     ChessBoard chessBoard;
+
+    // Initialyze the PieceMovement class that handles everything related to the piece's movement
+    PieceMovement pieceMovement;
+
     // Display the staring board in the terminal
     chessBoard.renderBoard();
 
     std::string input;
     
     while(true) {
-        std::cout << std::endl << "Enter a move (e.g., e2 e4) or type 'exit' to quit: ";
+        std::cout << std::endl << "Enter a move or enter 'exit' to quit: ";
         std::getline(std::cin, input);
         std::cout << std::endl;
 
@@ -33,7 +39,7 @@ int main() {
         const std::string fromSquare = input.substr(0, 2);
         const std::string toSquare = input.substr(3, 2);
 
-        bool pieceMoved = chessBoard.movePiece(fromSquare, toSquare);
+        bool pieceMoved = pieceMovement.movePiece(chessBoard, fromSquare, toSquare);
 
         if(pieceMoved == true) {
             printf("Moved the piece from %s to %s\n", fromSquare.c_str(), toSquare.c_str());

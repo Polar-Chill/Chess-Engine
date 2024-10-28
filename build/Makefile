@@ -153,6 +153,30 @@ src/ChessBoard.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessEngine.dir/build.make CMakeFiles/ChessEngine.dir/src/ChessBoard.cpp.s
 .PHONY : src/ChessBoard.cpp.s
 
+src/PieceMovement.o: src/PieceMovement.cpp.o
+.PHONY : src/PieceMovement.o
+
+# target to build an object file
+src/PieceMovement.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessEngine.dir/build.make CMakeFiles/ChessEngine.dir/src/PieceMovement.cpp.o
+.PHONY : src/PieceMovement.cpp.o
+
+src/PieceMovement.i: src/PieceMovement.cpp.i
+.PHONY : src/PieceMovement.i
+
+# target to preprocess a source file
+src/PieceMovement.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessEngine.dir/build.make CMakeFiles/ChessEngine.dir/src/PieceMovement.cpp.i
+.PHONY : src/PieceMovement.cpp.i
+
+src/PieceMovement.s: src/PieceMovement.cpp.s
+.PHONY : src/PieceMovement.s
+
+# target to generate assembly for a file
+src/PieceMovement.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessEngine.dir/build.make CMakeFiles/ChessEngine.dir/src/PieceMovement.cpp.s
+.PHONY : src/PieceMovement.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... src/ChessBoard.o"
 	@echo "... src/ChessBoard.i"
 	@echo "... src/ChessBoard.s"
+	@echo "... src/PieceMovement.o"
+	@echo "... src/PieceMovement.i"
+	@echo "... src/PieceMovement.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
