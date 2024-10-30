@@ -16,9 +16,7 @@ class ChessBoard {
 public:
     ChessBoard();
     void renderBoard();
-    void capturePiece(int fromRank, int fromFile, int toRank, int toFile);
     void promotePawn(int rank, int file, char promoteToPiece);
-    unsigned long long combineBitBoards();
 
     friend class PieceMovement;
 

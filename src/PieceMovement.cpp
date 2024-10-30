@@ -3,7 +3,7 @@
 #include "PieceMovement.h"
 
 // Moves the piece from the provided parameters "fromFile & fromRank" to "toFile & and toRank" 
-bool PieceMovement::movePiece(ChessBoard& Board, const std::string& fromSquare, const std::string& toSquare) {
+bool PieceMovement::movePiece(const std::string& fromSquare, const std::string& toSquare) {
     int fF = fromSquare[0] - 'a';
     int fR = fromSquare[1] - '1';
     int tF = toSquare[0] - 'a';

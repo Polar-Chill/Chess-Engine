@@ -33,75 +33,43 @@ ChessBoard::ChessBoard()
     blackPieces[5] = &blackKing;
 }
 
-// Combines all the bitboard into one main board that will be displayed.
-unsigned long long ChessBoard::combineBitBoards() {
-    unsigned long long board = 0Ull;
-
-    board |= whitePawns.bitboard;
-    board |= whiteKnights.bitboard;
-    board |= whiteBishops.bitboard;
-    board |= whiteRooks.bitboard;
-    board |= whiteQueen.bitboard;
-    board |= whiteKing.bitboard;
-    
-    board |= blackPawns.bitboard;
-    board |= blackKnights.bitboard;
-    board |= blackBishops.bitboard;
-    board |= blackRooks.bitboard;
-    board |= blackQueen.bitboard;
-    board |= blackKing.bitboard;
-
-    return board;
-}
-
 // Prints the whole board to the terminal
 void ChessBoard::renderBoard() {
-    unsigned long long chessBoard = combineBitBoards();
+    std::cout << "Rendering the Chess Board..\n";
 
-    for (int rank = 7; rank >=0; --rank) {
+    for (int rank = 7; rank >= 0; --rank) {
         std::cout << "                                      ";
         for (int file = 0; file < 8; file++) {
             int index = rank * 8 + file;
             unsigned long long bit = 1ULL << index;
+            bool pieceFound = false;
 
             // Check for white pieces
-            // for(int i = 0; i < 6; i++) {
-            //     if((whitePieces[i]->bitboard & bit) != 0) { 
-            //         std::cout << whitePieces[i]->symbol << " ";
-            //         break;
-            //     }
-            //     else std::cout << "00 "; // Empty square
-            //     break;
-            // }
-            //
-            // Check for black pieces
-            // for(int i = 0; i < 6; i++) {
-            //     if((blackPieces[i]->bitboard & bit) != 0) {
-            //         std::cout << blackPieces[i]->symbol << " ";
-            //         break;
-            //     }
-            //     else std::cout << "00 "; // Empty square
-            //     break;
-            // }
-
-            // Check for white pieces
-            if ((whitePawns.bitboard & bit) != 0) std::cout << "WP "; 
-            else if ((whiteKnights.bitboard & bit) != 0) std::cout << "WN "; 
-            else if ((whiteBishops.bitboard & bit) != 0) std::cout << "WB "; 
-            else if ((whiteRooks.bitboard & bit) != 0) std::cout << "WR "; 
-            else if ((whiteQueen.bitboard & bit) != 0) std::cout << "WQ "; 
-            else if ((whiteKing.bitboard & bit) != 0) std::cout << "WK "; 
+            for (int i = 0; i < 6; i++) {
+                if ((whitePieces[i]->bitboard & bit) != 0) { 
+                    std::cout << whitePieces[i]->symbol << " ";
+                    pieceFound = true;
+                    break;
+                }
+            }
 
             // Check for black pieces
-            else if ((blackPawns.bitboard & bit) != 0) std::cout << "BP ";
-            else if ((blackKnights.bitboard & bit) != 0) std::cout << "BN "; 
-            else if ((blackBishops.bitboard & bit) != 0) std::cout << "BB "; 
-            else if ((blackRooks.bitboard & bit) != 0) std::cout << "BR "; 
-            else if ((blackQueen.bitboard & bit) != 0) std::cout << "BQ "; 
-            else if ((blackKing.bitboard & bit) != 0) std::cout << "BK "; 
-            else std::cout << "00 "; // Empty toSquare
+            if (!pieceFound) {
+                for (int i = 0; i < 6; i++) {
+                    if ((blackPieces[i]->bitboard & bit) != 0) {
+                        std::cout << blackPieces[i]->symbol << " ";
+                        pieceFound = true;
+                        break;
+                    }
+                }
+            }
+
+            // Print empty square
+            if (!pieceFound) {
+                std::cout << "00 "; // Empty square
+            }
         }
         std::cout << std::endl;
     }
+    std::cout << "[✓] Board rendered Successfully\n";
 }
-

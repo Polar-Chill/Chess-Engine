@@ -177,6 +177,30 @@ src/PieceMovement.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessEngine.dir/build.make CMakeFiles/ChessEngine.dir/src/PieceMovement.cpp.s
 .PHONY : src/PieceMovement.cpp.s
 
+src/engine/Engine.o: src/engine/Engine.cpp.o
+.PHONY : src/engine/Engine.o
+
+# target to build an object file
+src/engine/Engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessEngine.dir/build.make CMakeFiles/ChessEngine.dir/src/engine/Engine.cpp.o
+.PHONY : src/engine/Engine.cpp.o
+
+src/engine/Engine.i: src/engine/Engine.cpp.i
+.PHONY : src/engine/Engine.i
+
+# target to preprocess a source file
+src/engine/Engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessEngine.dir/build.make CMakeFiles/ChessEngine.dir/src/engine/Engine.cpp.i
+.PHONY : src/engine/Engine.cpp.i
+
+src/engine/Engine.s: src/engine/Engine.cpp.s
+.PHONY : src/engine/Engine.s
+
+# target to generate assembly for a file
+src/engine/Engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ChessEngine.dir/build.make CMakeFiles/ChessEngine.dir/src/engine/Engine.cpp.s
+.PHONY : src/engine/Engine.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -216,6 +240,9 @@ help:
 	@echo "... src/PieceMovement.o"
 	@echo "... src/PieceMovement.i"
 	@echo "... src/PieceMovement.s"
+	@echo "... src/engine/Engine.o"
+	@echo "... src/engine/Engine.i"
+	@echo "... src/engine/Engine.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
