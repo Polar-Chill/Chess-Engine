@@ -31,7 +31,7 @@ int main() {
             break;
         }
 
-        if (input.size() < 2 || isalpha(input[0] && isalpha(input[1]))) {
+        if (input.size() < 2 || isalpha(input[0] && isdigit(input[1]))) {
             std::cout << "Error: Invalid input format. Please use the format 'e2 e4'." << std::endl;
             continue;
         }
