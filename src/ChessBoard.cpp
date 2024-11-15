@@ -3,19 +3,19 @@
 
 // Use the initializer list to properly initialize the Bitboard structs
 ChessBoard::ChessBoard()
-     :  whitePawns   {0x000000000000FF00, "WP", 'P', true},
-        whiteKnights {0x0000000000000042, "WN", 'N', true},
-        whiteBishops {0x0000000000000024, "WB", 'B', true},
-        whiteRooks   {0x0000000000000081, "WR", 'R', true},
-        whiteQueen   {0x0000000000000008, "WQ", 'Q', true},
-        whiteKing    {0x0000000000000010, "WK", 'K', true},
+     :  whitePawns   {0x000000000000FF00, "WP", 'P', 1, true},
+        whiteKnights {0x0000000000000042, "WN", 'N', 2, true},
+        whiteBishops {0x0000000000000024, "WB", 'B', 3, true},
+        whiteRooks   {0x0000000000000081, "WR", 'R', 4, true},
+        whiteQueen   {0x0000000000000008, "WQ", 'Q', 5, true},
+        whiteKing    {0x0000000000000010, "WK", 'K', 6, true},
 
-        blackPawns   {0x00FF000000000000, "BP", 'P', false},
-        blackKnights {0x4200000000000000, "BN", 'N', false},
-        blackBishops {0x2400000000000000, "BB", 'B', false},
-        blackRooks   {0x8100000000000000, "BR", 'R', false},
-        blackQueen   {0x0800000000000000, "BQ", 'Q', false},
-        blackKing    {0x1000000000000000, "BK", 'K', false}
+        blackPawns   {0x00FF000000000000, "BP", 'P', -1, false},
+        blackKnights {0x4200000000000000, "BN", 'N', -2, false},
+        blackBishops {0x2400000000000000, "BB", 'B', -3, false},
+        blackRooks   {0x8100000000000000, "BR", 'R', -4, false},
+        blackQueen   {0x0800000000000000, "BQ", 'Q', -5, false},
+        blackKing    {0x1000000000000000, "BK", 'K', -6, false}
 {
 // Populate the arrays with pointers to the individual pieces
     whitePieces[0] = &whitePawns;
@@ -46,7 +46,7 @@ void ChessBoard::renderBoard() {
 
             // Check for white pieces
             for (int i = 0; i < 6; i++) {
-                if ((whitePieces[i]->bitboard & bit) != 0) { 
+                if ((whitePieces[i]->bitboard & bit) != 0) {
                     std::cout << whitePieces[i]->symbol << " ";
                     pieceFound = true;
                     break;
@@ -72,4 +72,33 @@ void ChessBoard::renderBoard() {
         std::cout << std::endl;
     }
     std::cout << "[✓] Board rendered Successfully\n";
+}
+
+bool ChessBoard::checkSquare(std::string square)
+{
+    int squareFile = square[0] - 'a';
+    int squareRank = square[1] - '1';
+
+    int squareIndex = squareRank * 8 + squareFile;
+
+    unsigned long long squarePosition = 1ULL << squareIndex;
+
+    // Check for white pieces
+    for(int i = 0; i < 6; i++) {
+        if((whitePieces[i]->bitboard & squarePosition) != 0) {
+            std::cout << "There is a piece on square" << square << std::endl;
+            return true;
+        }
+    }
+
+    // Check for black pieces
+    for(int i = 0; i < 6; i++) {
+        if((blackPieces[i]->bitboard & squarePosition) != 0) {
+            std::cout << "There is a piece on square: " << square << std::endl;
+            return true;
+        }
+    }
+
+    std::cout << "There is no piece on the provided: " << square << std::endl;
+    return false;
 }

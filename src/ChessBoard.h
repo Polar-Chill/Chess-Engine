@@ -7,6 +7,7 @@ struct ChessPiece {
     unsigned long long bitboard;
     std::string symbol;
     char pieceType;
+    int pieceIdentity;
     bool isWhite;
 };
 
@@ -17,6 +18,7 @@ public:
     ChessBoard();
     void renderBoard();
     void promotePawn(int rank, int file, char promoteToPiece);
+    bool checkSquare(std::string square);
 
     friend class PieceMovement;
 

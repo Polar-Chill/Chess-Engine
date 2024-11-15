@@ -13,6 +13,6 @@ public:
     bool movePiece(const std::string& fromSquare, const std::string& toSquare);
     int convertNotationToIndex(std::string& input_string);
     void isMoveValid();
-    void capturePiece(int fromRank, int fromFile, int toRank, int toFile);
+    void capturePiece(const std::string& fromSquare, const std::string& toSquare);
 
 };
