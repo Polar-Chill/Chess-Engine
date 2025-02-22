@@ -1,11 +1,18 @@
 #pragma once
 #include "ChessBoard.h"
 
+#include <string>
+
 class PieceMovement {
 
-public:
-    bool movePiece(ChessBoard& Board, const std::string& fromSquare, const std::string& toSquare);
-
 private:
+    ChessBoard& Board;
+
+public:
+    PieceMovement(ChessBoard& b) : Board(b) {}
+    bool movePiece(const std::string& fromSquare, const std::string& toSquare);
+    int convertNotationToIndex(std::string& input_string);
+    void isMoveValid();
+    void capturePiece(const std::string& fromSquare, const std::string& toSquare);
 
 };
