@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <string>
 #include "ChessBoard.h"
 
 // Use the initializer list to properly initialize the Bitboard structs
@@ -86,7 +88,7 @@ bool ChessBoard::checkSquare(std::string square)
     // Check for white pieces
     for(int i = 0; i < 6; i++) {
         if((whitePieces[i]->bitboard & squarePosition) != 0) {
-            std::cout << "There is a piece on square" << square << std::endl;
+            // std::cout << "There is a piece on square" << square << std::endl;
             return true;
         }
     }
@@ -94,11 +96,11 @@ bool ChessBoard::checkSquare(std::string square)
     // Check for black pieces
     for(int i = 0; i < 6; i++) {
         if((blackPieces[i]->bitboard & squarePosition) != 0) {
-            std::cout << "There is a piece on square: " << square << std::endl;
+            // std::cout << "There is a piece on square: " << square << std::endl;
             return true;
         }
     }
 
-    std::cout << "There is no piece on the provided: " << square << std::endl;
     return false;
 }
+

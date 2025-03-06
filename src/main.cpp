@@ -43,12 +43,10 @@ int main() {
         if(hasPiece == true) {
             pieceMovement.capturePiece(fromSquare, toSquare);
             printf("Captured the piece %s to %s\n", toSquare.c_str(), fromSquare.c_str());
-        } else {
+        } else if (hasPiece == false) {
             pieceMovement.movePiece(fromSquare, toSquare);
             printf("Moved the piece from %s to %s\n", fromSquare.c_str(), toSquare.c_str());
         }
-
-        chessBoard.renderBoard();
     }
 
     return 0;

@@ -8,9 +8,7 @@ bool PieceMovement::movePiece(const std::string& fromSquare, const std::string& 
     int fF = fromSquare[0] - 'a';
     int fR = fromSquare[1] - '1';
     int tF = toSquare[0] - 'a';
-    int tR = toSquare[1] - '1';
-
-    int initialPosition = fR * 8 + fF;
+    int tR = toSquare[1] - '1'; int initialPosition = fR * 8 + fF;
     int newPosition = tR * 8 + tF;
 
     unsigned long long iPiecePosition = 1ULL << initialPosition;
@@ -20,6 +18,7 @@ bool PieceMovement::movePiece(const std::string& fromSquare, const std::string& 
     for (int i = 0; i < 6; i++) {
         if ((Board.whitePieces[i]->bitboard & iPiecePosition) != 0) {
             Board.whitePieces[i]->bitboard = (Board.whitePieces[i]->bitboard ^ iPiecePosition) | nPiecePosition;
+            Board.renderBoard();
             return true;
         }
     }
@@ -28,6 +27,7 @@ bool PieceMovement::movePiece(const std::string& fromSquare, const std::string& 
     for (int i = 0; i < 6; i++) {
         if ((Board.blackPieces[i]->bitboard & iPiecePosition) != 0) {
             Board.blackPieces[i]->bitboard = (Board.blackPieces[i]->bitboard ^ iPiecePosition) | nPiecePosition;
+            Board.renderBoard();
             return true;
         }
     }

@@ -1,6 +1,7 @@
 #ifndef CHESSBOARD_H
 #define CHESSBOARD_H
 
+#include <vector>
 #include <string>
 
 struct ChessPiece {
@@ -23,6 +24,7 @@ public:
     friend class PieceMovement;
 
 private:
+
     ChessPiece whitePawns, whiteKnights, whiteBishops, whiteRooks, whiteQueen, whiteKing;
     ChessPiece blackPawns, blackKnights, blackBishops, blackRooks, blackQueen, blackKing;
 
