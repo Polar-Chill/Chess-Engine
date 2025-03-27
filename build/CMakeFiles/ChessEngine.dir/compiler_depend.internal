@@ -209,10 +209,6 @@ CMakeFiles/ChessEngine.dir/src/ChessBoard.cpp.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdarg.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h
 
-CMakeFiles/ChessEngine.dir/src/PieceDescription.cpp.o
- /home/manvendra/projects/chess_engine/src/PieceDescription.cpp
- /usr/include/stdc-predef.h
-
 CMakeFiles/ChessEngine.dir/src/PieceMovement.cpp.o
  /home/manvendra/projects/chess_engine/src/PieceMovement.cpp
  /home/manvendra/projects/chess_engine/src/ChessBoard.h
@@ -849,7 +845,6 @@ ChessEngine
  /usr/lib32/libz.so.1
  /usr/lib32/libzstd.so.1
  /home/manvendra/projects/chess_engine/build/CMakeFiles/ChessEngine.dir/src/ChessBoard.cpp.o
- /home/manvendra/projects/chess_engine/build/CMakeFiles/ChessEngine.dir/src/PieceDescription.cpp.o
  /home/manvendra/projects/chess_engine/build/CMakeFiles/ChessEngine.dir/src/PieceMovement.cpp.o
  /home/manvendra/projects/chess_engine/build/CMakeFiles/ChessEngine.dir/src/engine/Engine.cpp.o
  /home/manvendra/projects/chess_engine/build/CMakeFiles/ChessEngine.dir/src/engine/eval.cpp.o

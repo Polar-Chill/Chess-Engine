@@ -2,8 +2,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/ChessEngine.dir/link.d"
   "CMakeFiles/ChessEngine.dir/src/ChessBoard.cpp.o"
   "CMakeFiles/ChessEngine.dir/src/ChessBoard.cpp.o.d"
-  "CMakeFiles/ChessEngine.dir/src/PieceDescription.cpp.o"
-  "CMakeFiles/ChessEngine.dir/src/PieceDescription.cpp.o.d"
   "CMakeFiles/ChessEngine.dir/src/PieceMovement.cpp.o"
   "CMakeFiles/ChessEngine.dir/src/PieceMovement.cpp.o.d"
   "CMakeFiles/ChessEngine.dir/src/engine/Engine.cpp.o"

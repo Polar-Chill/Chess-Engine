@@ -6,7 +6,7 @@
 
 struct ChessPiece {
     unsigned long long bitboard;
-    std::string symbol;
+    std::vector<std::string> symbol;
     char pieceType;
     int pieceIdentity;
     bool isWhite;
@@ -20,11 +20,11 @@ public:
     void renderBoard();
     void promotePawn(int rank, int file, char promoteToPiece);
     bool checkSquare(std::string square);
+    std::vector<std::string> getPossibleMoves(const ChessBoard& board);
 
     friend class PieceMovement;
 
 private:
-
     ChessPiece whitePawns, whiteKnights, whiteBishops, whiteRooks, whiteQueen, whiteKing;
     ChessPiece blackPawns, blackKnights, blackBishops, blackRooks, blackQueen, blackKing;
 

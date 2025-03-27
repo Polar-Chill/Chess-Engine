@@ -5,19 +5,19 @@
 
 // Use the initializer list to properly initialize the Bitboard structs
 ChessBoard::ChessBoard()
-     :  whitePawns   {0x000000000000FF00, "WP", 'P', 1, true},
-        whiteKnights {0x0000000000000042, "WN", 'N', 2, true},
-        whiteBishops {0x0000000000000024, "WB", 'B', 3, true},
-        whiteRooks   {0x0000000000000081, "WR", 'R', 4, true},
-        whiteQueen   {0x0000000000000008, "WQ", 'Q', 5, true},
-        whiteKing    {0x0000000000000010, "WK", 'K', 6, true},
+     :  whitePawns   {0x000000000000FF00, {"W", "P"}, 'P', 1, true},
+        whiteKnights {0x0000000000000042, {"W", "K"}, 'N', 3, true},
+        whiteBishops {0x0000000000000024, {"W", "B"}, 'B', 3, true},
+        whiteRooks   {0x0000000000000081, {"W", "R"}, 'R', 4, true},
+        whiteQueen   {0x0000000000000008, {"W", "Q"}, 'Q', 5, true},
+        whiteKing    {0x0000000000000010, {"W", "K"}, 'K', 6, true},
 
-        blackPawns   {0x00FF000000000000, "BP", 'P', -1, false},
-        blackKnights {0x4200000000000000, "BN", 'N', -2, false},
-        blackBishops {0x2400000000000000, "BB", 'B', -3, false},
-        blackRooks   {0x8100000000000000, "BR", 'R', -4, false},
-        blackQueen   {0x0800000000000000, "BQ", 'Q', -5, false},
-        blackKing    {0x1000000000000000, "BK", 'K', -6, false}
+        blackPawns   {0x00FF000000000000, {"B", "P"}, 'P', -1, false},
+        blackKnights {0x4200000000000000, {"B", "K"}, 'N', -2, false},
+        blackBishops {0x2400000000000000, {"B", "B"}, 'B', -3, false},
+        blackRooks   {0x8100000000000000, {"B", "R"}, 'R', -4, false},
+        blackQueen   {0x0800000000000000, {"B", "Q"}, 'Q', -5, false},
+        blackKing    {0x1000000000000000, {"B", "K"}, 'K', -6, false}
 {
 // Populate the arrays with pointers to the individual pieces
     whitePieces[0] = &whitePawns;
@@ -39,8 +39,10 @@ ChessBoard::ChessBoard()
 void ChessBoard::renderBoard() {
     std::cout << "Rendering the Chess Board..\n";
 
+    std::vector<std::vector<std::vector<std::string>>> chessBoard;
+
     for (int rank = 7; rank >= 0; --rank) {
-        std::cout << "                                      ";
+        std::vector<std::vector<std::string>> currentRank;
         for (int file = 0; file < 8; file++) {
             int index = rank * 8 + file;
             unsigned long long bit = 1ULL << index;
@@ -49,7 +51,7 @@ void ChessBoard::renderBoard() {
             // Check for white pieces
             for (int i = 0; i < 6; i++) {
                 if ((whitePieces[i]->bitboard & bit) != 0) {
-                    std::cout << whitePieces[i]->symbol << " ";
+                    currentRank.insert(currentRank.end(), whitePieces[i]->symbol);
                     pieceFound = true;
                     break;
                 }
@@ -59,7 +61,7 @@ void ChessBoard::renderBoard() {
             if (!pieceFound) {
                 for (int i = 0; i < 6; i++) {
                     if ((blackPieces[i]->bitboard & bit) != 0) {
-                        std::cout << blackPieces[i]->symbol << " ";
+                        currentRank.insert(currentRank.end(), blackPieces[i]->symbol);
                         pieceFound = true;
                         break;
                     }
@@ -68,11 +70,37 @@ void ChessBoard::renderBoard() {
 
             // Print empty square
             if (!pieceFound) {
-                std::cout << "00 "; // Empty square
+                currentRank.insert(currentRank.end(),
+                    { " _ _ _ _ _ _ _ _ _ _ _ ",
+                      "|                     |",
+                      "|                     |",
+                      "|                     |",
+                      "|                     |",
+                      "|                     |",
+                      "|                     |",
+                      "|                     |",
+                      "|                     |",
+                      "|                     |",
+                      " ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ "});
             }
         }
-        std::cout << std::endl;
+        chessBoard.insert(chessBoard.end(), currentRank);
+        // std::cout << std::endl;
     }
+
+    for(int b = 0; b < chessBoard.size(); b++) {
+        std::vector<std::string> rankAscii(11, "");
+        for(int i = 0; i < chessBoard[b].size(); i++) {
+            for(int q = 0; q < chessBoard[b][i].size(); q++) {
+                rankAscii[q] += chessBoard[b][i][q];
+            }
+        }
+        for(int i = 0; i < rankAscii.size(); i++) {
+            std::cout << rankAscii[i];
+            if(i < 10) std::cout << std::endl;
+        }
+    }
+
     std::cout << "[✓] Board rendered Successfully\n";
 }
 
