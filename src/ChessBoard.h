@@ -21,6 +21,7 @@ public:
     void promotePawn(int rank, int file, char promoteToPiece);
     bool checkSquare(std::string square);
     std::vector<std::string> getPossibleMoves(const ChessBoard& board);
+    bool isPlayingWhite;
 
     friend class PieceMovement;
 

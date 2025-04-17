@@ -5,19 +5,129 @@
 
 // Use the initializer list to properly initialize the Bitboard structs
 ChessBoard::ChessBoard()
-     :  whitePawns   {0x000000000000FF00, {"W", "P"}, 'P', 1, true},
-        whiteKnights {0x0000000000000042, {"W", "K"}, 'N', 3, true},
-        whiteBishops {0x0000000000000024, {"W", "B"}, 'B', 3, true},
-        whiteRooks   {0x0000000000000081, {"W", "R"}, 'R', 4, true},
-        whiteQueen   {0x0000000000000008, {"W", "Q"}, 'Q', 5, true},
-        whiteKing    {0x0000000000000010, {"W", "K"}, 'K', 6, true},
+     :  whitePawns   {0x000000000000FF00,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"},
+                     'P', 1, true},
+        whiteKnights {0x0000000000000042,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"},
+                     'N', 3, true},
+        whiteBishops {0x0000000000000024,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'B', 3, true},
+        whiteRooks   {0x0000000000000081,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'R', 4, true},
+        whiteQueen   {0x0000000000000008,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'Q', 5, true},
+        whiteKing    {0x0000000000000010,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'K', 6, true},
 
-        blackPawns   {0x00FF000000000000, {"B", "P"}, 'P', -1, false},
-        blackKnights {0x4200000000000000, {"B", "K"}, 'N', -2, false},
-        blackBishops {0x2400000000000000, {"B", "B"}, 'B', -3, false},
-        blackRooks   {0x8100000000000000, {"B", "R"}, 'R', -4, false},
-        blackQueen   {0x0800000000000000, {"B", "Q"}, 'Q', -5, false},
-        blackKing    {0x1000000000000000, {"B", "K"}, 'K', -6, false}
+        blackPawns   {0x00FF000000000000,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'P', -1, false},
+        blackKnights {0x4200000000000000,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'N', -2, false},
+        blackBishops {0x2400000000000000,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'B', -3, false},
+        blackRooks   {0x8100000000000000,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'R', -4, false},
+        blackQueen   {0x0800000000000000,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'Q', -5, false},
+        blackKing    {0x1000000000000000,
+                     { "|- - - - - - - - -|",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|                 |",
+                       "|- - - - - - - - -|"}, 'K', -6, false}
 {
 // Populate the arrays with pointers to the individual pieces
     whitePieces[0] = &whitePawns;
@@ -71,17 +181,15 @@ void ChessBoard::renderBoard() {
             // Print empty square
             if (!pieceFound) {
                 currentRank.insert(currentRank.end(),
-                    { " _ _ _ _ _ _ _ _ _ _ _ ",
-                      "|                     |",
-                      "|                     |",
-                      "|                     |",
-                      "|                     |",
-                      "|                     |",
-                      "|                     |",
-                      "|                     |",
-                      "|                     |",
-                      "|                     |",
-                      " ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ "});
+                    { "|- - - - - - - - -|",
+                      "|                 |",
+                      "|                 |",
+                      "|                 |",
+                      "|                 |",
+                      "|                 |",
+                      "|                 |",
+                      "|                 |",
+                      "|- - - - - - - - -|"});
             }
         }
         chessBoard.insert(chessBoard.end(), currentRank);
@@ -89,16 +197,18 @@ void ChessBoard::renderBoard() {
     }
 
     for(int b = 0; b < chessBoard.size(); b++) {
-        std::vector<std::string> rankAscii(11, "");
+        std::vector<std::string> rankAscii(9, "");
         for(int i = 0; i < chessBoard[b].size(); i++) {
             for(int q = 0; q < chessBoard[b][i].size(); q++) {
                 rankAscii[q] += chessBoard[b][i][q];
             }
         }
         for(int i = 0; i < rankAscii.size(); i++) {
+            if (b != 0 && i == 0) continue;
             std::cout << rankAscii[i];
-            if(i < 10) std::cout << std::endl;
+            if(i < 9) std::cout << std::endl;
         }
+        // std::cout << "Debug Text";
     }
 
     std::cout << "[✓] Board rendered Successfully\n";

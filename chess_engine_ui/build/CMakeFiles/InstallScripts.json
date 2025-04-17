@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/manvendra/projects/chess_engine/chess_engine_ui/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
